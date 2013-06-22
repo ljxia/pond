@@ -34,13 +34,43 @@ module.exports = (grunt) ->
         # Gets the port from the connect configuration
         path: 'http://0.0.0.0:<%= connect.all.options.port%>'
 
-    regarde:
-      all:
+    watch:
+      coffescripts:
+        files: ["coffee/*.coffee"]
+        tasks: ["coffee"]
+        options:
+          livereload: true
+          nospawn: true
+      stylesheets:
+        files: ["sass/*.scss"]
+        tasks: ["sass"]
+        options:
+          livereload: true
+          nospawn: true
+      static:
         # This'll just watch the index.html file, you could add **/*.js or **/*.css
         # to watch Javascript and CSS files too.
-        files:['index.html'],
+        files:['index.html']
         # This configures the task that will run when the file change
         tasks: ['livereload']
 
+    sass:
+      all:
+        options:
+          style: "compressed"
+        files:
+          "stylesheets/app.css": "sass/app.scss"
+        yuicompress: true
+        compress: true
+
+    coffee:
+      glob_to_multiple:
+        expand: true
+        flatten: true
+        cwd: 'coffee'
+        src: ['*.coffee']
+        dest: 'build/'
+        ext: '.js'
+
   # Creates the `server` task
-  grunt.registerTask "server", ["open",'livereload-start',"connect", "regarde"]
+  grunt.registerTask "server", ["connect", "watch"]
