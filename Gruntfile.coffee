@@ -42,7 +42,7 @@ module.exports = (grunt) ->
           # templates
           {
             expand: true
-            cwd: "templates/"
+            cwd: "src/templates/"
             src: ["*.html"]
             dest: "build/"
             filter: 'isFile'
@@ -59,13 +59,13 @@ module.exports = (grunt) ->
 
     watch:
       coffescripts:
-        files: ["coffee/*.coffee"]
+        files: ["src/coffee/*.coffee"]
         tasks: ["coffee"]
         options:
           livereload: true
           nospawn: true
       stylesheets:
-        files: ["sass/*.scss"]
+        files: ["src/sass/*.scss"]
         tasks: ["sass"]
         options:
           livereload: true
@@ -73,7 +73,7 @@ module.exports = (grunt) ->
       static:
         # This'll just watch the index.html file, you could add **/*.js or **/*.css
         # to watch Javascript and CSS files too.
-        files:['templates/*.html']
+        files:['src/templates/*.html']
         # This configures the task that will run when the file change
         tasks: ["copy"]
         options:
@@ -93,7 +93,7 @@ module.exports = (grunt) ->
       glob_to_multiple:
         expand: true
         flatten: true
-        cwd: 'coffee'
+        cwd: 'src/coffee'
         src: ['*.coffee']
         dest: 'build/javascripts'
         ext: '.js'
