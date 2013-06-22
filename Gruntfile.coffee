@@ -13,6 +13,7 @@ module.exports = (grunt) ->
         options:
           port: 9000
           hostname: "0.0.0.0"
+          base: "build"
 
           # Prevents Grunt to close just after the task (starting the server) completes
           # This will be removed later as `watch` will take care of that
@@ -29,10 +30,24 @@ module.exports = (grunt) ->
               require("grunt-contrib-livereload/lib/utils").livereloadSnippet,
               connect.static(options.base)
             ]
+
     open:
       all:
         # Gets the port from the connect configuration
         path: 'http://0.0.0.0:<%= connect.all.options.port%>'
+
+    copy:
+      dist:
+        files: [
+          # templates
+          {
+            expand: true
+            cwd: "templates/"
+            src: ["*.html"]
+            dest: "build/"
+            filter: 'isFile'
+          }
+        ]
 
     watch:
       coffescripts:
@@ -50,16 +65,19 @@ module.exports = (grunt) ->
       static:
         # This'll just watch the index.html file, you could add **/*.js or **/*.css
         # to watch Javascript and CSS files too.
-        files:['index.html']
+        files:['templates/*.html']
         # This configures the task that will run when the file change
-        tasks: ['livereload']
+        tasks: ["copy"]
+        options:
+          livereload: true
+          nospawn: true
 
     sass:
       all:
         options:
           style: "compressed"
         files:
-          "stylesheets/app.css": "sass/app.scss"
+          "build/stylesheets/app.css": "sass/app.scss"
         yuicompress: true
         compress: true
 
@@ -69,7 +87,7 @@ module.exports = (grunt) ->
         flatten: true
         cwd: 'coffee'
         src: ['*.coffee']
-        dest: 'build/'
+        dest: 'build/javascripts'
         ext: '.js'
 
   # Creates the `server` task
