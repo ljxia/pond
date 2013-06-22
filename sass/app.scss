@@ -1,14 +1,3 @@
 @import "../components/normalize.scss/_normalize";
 
-body {
-  background: #333;
-  color: #EEE;
-  padding: 0;
-  margin: 0;
-
-  h1 {
-    margin: 0;
-    padding: 30px;
-    font-size: 80px;
-  }
-}
+@import "ui";

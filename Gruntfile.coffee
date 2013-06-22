@@ -98,5 +98,14 @@ module.exports = (grunt) ->
         dest: 'build/javascripts'
         ext: '.js'
 
+    concat:
+      scripts:
+        src: [
+          'build/javascripts/lib/three.min.js'
+          'build/javascripts/lib/underscore.min.js'
+          'build/javascripts/app.js'
+        ]
+        dest: 'build/javascripts/built.js'
+
   # Creates the `server` task
   grunt.registerTask "server", ["connect", "watch"]
