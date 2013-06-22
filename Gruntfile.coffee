@@ -48,6 +48,10 @@ module.exports = (grunt) ->
             filter: 'isFile'
           }
           {
+            src: ["node_modules/threejs/build/three.min.js"]
+            dest: "build/javascripts/lib/three.min.js"
+          }
+          {
             src: ["node_modules/leapjs/leap.min.js"]
             dest: "build/javascripts/lib/leap.min.js"
           }
@@ -55,7 +59,7 @@ module.exports = (grunt) ->
 
     watch:
       coffescripts:
-        files: ["src/coffee/*.coffee"]
+        files: ["src/coffee/*.coffee","src/coffee/modules/*.coffee"]
         tasks: ["coffee"]
         options:
           livereload: true
@@ -86,22 +90,15 @@ module.exports = (grunt) ->
         compress: true
 
     coffee:
-      glob_to_multiple:
-        expand: true
-        flatten: true
-        cwd: 'src/coffee'
-        src: ['*.coffee']
-        dest: 'build/javascripts'
-        ext: '.js'
-
-    concat:
-      scripts:
-        src: [
-          'components/threejs/build/three.min.js'
-          'components/underscore/underscore-min.js'
-          'build/javascripts/app.js'
+      compile:
+        options:
+          bare: true
+          join: true
+        files:[
+          "build/javascripts/app.js":  "src/coffee/app.coffee"
+          "build/javascripts/modules.js": [ "src/coffee/modules/*.coffee" ]
         ]
-        dest: 'build/javascripts/built.js'
 
   # Creates the `server` task
-  grunt.registerTask "server", ["coffee","sass","concat","connect", "watch"]
+  grunt.registerTask "server", ["coffee","sass","copy", "connect", "watch"]
+

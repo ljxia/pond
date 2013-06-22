@@ -1,5 +1,5 @@
 class World
-  contructor: (@container)->
+  constructor: ->
     @setup()
 
   setup: ->
