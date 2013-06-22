@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Leap Motion Playground with leap.js",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "leapjs": "~0.1.2"
+  },
   "devDependencies": {
     "matchdep": "~0.1.2",
     "grunt": "~0.4.0",

@@ -48,12 +48,8 @@ module.exports = (grunt) ->
             filter: 'isFile'
           }
           {
-            src: ["components/threejs/build/three.min.js"]
-            dest: "build/javascripts/lib/three.min.js"
-          }
-          {
-            src: ["components/underscore/underscore-min.js"]
-            dest: "build/javascripts/lib/underscore.min.js"
+            src: ["node_modules/leapjs/leap.min.js"]
+            dest: "build/javascripts/lib/leap.min.js"
           }
         ]
 
@@ -85,7 +81,7 @@ module.exports = (grunt) ->
         options:
           style: "compressed"
         files:
-          "build/stylesheets/app.css": "sass/app.scss"
+          "build/stylesheets/app.css": "src/sass/app.scss"
         yuicompress: true
         compress: true
 
@@ -101,11 +97,11 @@ module.exports = (grunt) ->
     concat:
       scripts:
         src: [
-          'build/javascripts/lib/three.min.js'
-          'build/javascripts/lib/underscore.min.js'
+          'components/threejs/build/three.min.js'
+          'components/underscore/underscore-min.js'
           'build/javascripts/app.js'
         ]
         dest: 'build/javascripts/built.js'
 
   # Creates the `server` task
-  grunt.registerTask "server", ["connect", "watch"]
+  grunt.registerTask "server", ["coffee","sass","concat","connect", "watch"]
