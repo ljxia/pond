@@ -47,6 +47,14 @@ module.exports = (grunt) ->
             dest: "build/"
             filter: 'isFile'
           }
+          {
+            src: ["components/threejs/build/three.min.js"]
+            dest: "build/javascripts/lib/three.min.js"
+          }
+          {
+            src: ["components/underscore/underscore-min.js"]
+            dest: "build/javascripts/lib/underscore.min.js"
+          }
         ]
 
     watch:
