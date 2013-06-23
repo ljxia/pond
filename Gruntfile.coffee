@@ -48,7 +48,7 @@ module.exports = (grunt) ->
             filter: 'isFile'
           }
           {
-            src: ["node_modules/threejs/build/three.min.js"]
+            src: ["components/threejs/build/three.min.js"]
             dest: "build/javascripts/lib/three.min.js"
           }
           {
