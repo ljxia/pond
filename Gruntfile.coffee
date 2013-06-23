@@ -59,7 +59,13 @@ module.exports = (grunt) ->
 
     watch:
       coffescripts:
-        files: ["src/coffee/*.coffee","src/coffee/modules/*.coffee"]
+        files: ["src/coffee/*.coffee"]
+        tasks: ["coffee"]
+        options:
+          livereload: true
+          nospawn: true
+      coffee_modules:
+        files: ["src/coffee/modules/*.coffee"]
         tasks: ["coffee"]
         options:
           livereload: true
