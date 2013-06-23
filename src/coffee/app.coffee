@@ -1,4 +1,4 @@
-console.log "playground ready"
+# console.log "playground ready"
 
 
 class LeapPlayground
@@ -11,7 +11,7 @@ class LeapPlayground
     @handleWindowResize()
 
     @scene = new THREE.Scene()
-    @scene.fog = new THREE.Fog( 0x050505, 500, 6000 )
+    @scene.fog = new THREE.Fog( 0x959595, 100, 2000 )
 
     light = new THREE.DirectionalLight(0x999999, 2)
     light.position.set(1, 0, 1).normalize()
@@ -22,7 +22,7 @@ class LeapPlayground
 
 
     @layers =
-      "grid": new LPGrid(@scene)
+      "grid": new LPGrid(@scene, @renderer)
 
     ######
 

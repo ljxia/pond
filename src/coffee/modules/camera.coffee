@@ -14,8 +14,6 @@ class LPCamera
     @camera.position.y += 0.1 * (@cameraTarget.y * 500 - @camera.position.y)
     @camera.updateProjectionMatrix()
 
-    console.log @camera.position
-
   handleWindowResize: (width, height) ->
     @camera.aspect = width / height
     @camera.updateProjectionMatrix()

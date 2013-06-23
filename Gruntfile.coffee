@@ -48,12 +48,23 @@ module.exports = (grunt) ->
             filter: 'isFile'
           }
           {
+            src: ["components/eventemitter2/lib/eventemitter2.js"]
+            dest: "build/javascripts/lib/eventemitter2.js"
+          }
+          {
             src: ["components/threejs/build/three.min.js"]
             dest: "build/javascripts/lib/three.min.js"
           }
           {
             src: ["node_modules/leapjs/leap.min.js"]
             dest: "build/javascripts/lib/leap.min.js"
+          }
+          {
+            expand: true
+            cwd: "assets/images/"
+            src: ["*.png", "*.jpg"]
+            dest: "build/images/"
+            filter: 'isFile'
           }
         ]
 
