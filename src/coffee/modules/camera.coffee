@@ -7,8 +7,8 @@ define [
   ) ->
     class LPCamera extends EventEmitter
       constructor: ->
-        @camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 9000 )
-        @camera.position.set( 0, 0, 1800 )
+        @camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 9000 )
+        @camera.position.set( 0, 0, 4000 )
 
         @cameraTarget = new THREE.Vector3( 0, 0, 0 )
 
@@ -17,8 +17,8 @@ define [
 
       update: ->
         # @camera.lookAt( 0, 0, 0 )
-        @camera.position.x += 0.1 * (@cameraTarget.x * 1000 - @camera.position.x)
-        @camera.position.y += 0.1 * (@cameraTarget.y * 1000 - @camera.position.y)
+        @camera.position.x += 0.1 * (@cameraTarget.x * 2000 - @camera.position.x)
+        @camera.position.y += 0.1 * (@cameraTarget.y * 2000 - @camera.position.y)
         @camera.updateProjectionMatrix()
 
       handleWindowResize: (width, height) ->

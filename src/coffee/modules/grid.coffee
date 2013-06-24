@@ -10,10 +10,6 @@ define [
         @cube = new THREE.Mesh( geometry, material )
         @scene.add( @cube )
 
-        # material = new THREE.LineBasicMaterial
-        #   color: 0x999999
-        #   opacity: 0.3
-
         texture = THREE.ImageUtils.loadTexture(
               "images/mark.png"
             )
@@ -36,7 +32,7 @@ define [
 
         # fill a cube of 2000px long on each side
         length = 10
-        distance = 600
+        distance = 500
 
         geometry = new THREE.Geometry()
         geometry.dynamic = false

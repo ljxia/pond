@@ -20,7 +20,7 @@ define [
         @handleWindowResize()
 
         @scene = new THREE.Scene()
-        @scene.fog = new THREE.Fog( 0x959595, 100, 2000 )
+        @scene.fog = new THREE.Fog( 0x050505, 100, 8000 )
 
         light = new THREE.DirectionalLight(0x999999, 2)
         light.position.set(1, 0, 1).normalize()
