@@ -65,5 +65,10 @@ define [
       handleMouseMove: (event) ->
         @camera.handleMouseMove event
 
+      handleKeyPress: (event) ->
+        console.log "Pressed #{event.keyCode}"
+        for key, object of @layers
+          object.handleKeypress event if object.handleKeypress?
+
     return LeapPlayground
 

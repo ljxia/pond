@@ -36,6 +36,9 @@ define [
     document.addEventListener "mousemove", (event) ->
       playground.handleMouseMove event
 
+    document.addEventListener "keypress", (event) ->
+      playground.handleKeyPress event
+
     animate = ->
       requestAnimationFrame animate
       playground.play()
