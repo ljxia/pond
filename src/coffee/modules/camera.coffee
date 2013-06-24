@@ -3,7 +3,7 @@ define [
     "eventemitter2"
   ], (
     THREE,
-    EventEmitter,
+    EventEmitter
   ) ->
     class LPCamera extends EventEmitter
       constructor: ->

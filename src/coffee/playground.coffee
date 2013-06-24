@@ -1,16 +1,18 @@
 define [
     "threejs"
-    "eventemitter2"
+    "modules/leap_listener"
+    "modules/frame_visualizer"
     "modules/camera"
     "modules/grid"
   ], (
     THREE,
-    EventEmitter,
+    LeapListener,
+    LPFrameVisualizer,
     LPCamera,
     LPGrid
   ) ->
 
-    class LeapPlayground extends EventEmitter
+    class LeapPlayground
       constructor: (layers) ->
         @name = "LeapMotion Playground"
         @canvas = document.getElementById("canvas")
@@ -18,6 +20,8 @@ define [
         @canvas.appendChild @renderer.domElement
         @camera = new LPCamera()
         @handleWindowResize()
+
+        @leap = new LeapListener()
 
         @scene = new THREE.Scene()
         @scene.fog = new THREE.Fog( 0x050505, 100, 8000 )
@@ -33,6 +37,11 @@ define [
         for name, layerFunc of layers
           @layers[name] = new layerFunc(@scene, @renderer)
 
+
+        @leap.on "frame", (frame) =>
+          for key, object of @layers
+            object.handleLeapFrame frame if object.handleLeapFrame?
+
       play: ->
         @update()
         @render()
@@ -41,7 +50,7 @@ define [
         # update states
 
         for key, object of @layers
-          object.update()
+          object.update() if object.update?
         @camera.update()
 
       render: ->

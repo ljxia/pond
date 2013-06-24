@@ -48,6 +48,14 @@ module.exports = (grunt) ->
             filter: 'isFile'
           }
           {
+            src: ["components/jquery/jquery.min.js"]
+            dest: "build/javascripts/lib/jquery.min.js"
+          }
+          {
+            src: ["components/underscore/underscore-min.js"]
+            dest: "build/javascripts/lib/underscore.min.js"
+          }
+          {
             src: ["components/requirejs/require.js"]
             dest: "build/javascripts/lib/require.js"
           }

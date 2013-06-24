@@ -1,8 +1,10 @@
 require.config
   paths:
+    "jquery": "lib/jquery.min"
     "threejs": "lib/three.min"
     "eventemitter2": "lib/eventemitter2"
     "leapjs": "lib/leap.min"
+    "underscore": "lib/underscore.min"
   shim:
     "threejs":
       exports: "THREE"
@@ -10,17 +12,22 @@ require.config
       exports: "EventEmitter"
     "leapjs":
       exports: "Leap"
+    "underscore":
+      exports: "_"
 
 define [
     "playground"
     "modules/grid"
+    "modules/frame_visualizer"
   ], (
     LeapPlayground,
-    LPGrid
+    LPGrid,
+    LPFrameVisualizer
   ) ->
     #
     playground = new LeapPlayground(
       "grid": LPGrid
+      "frames": LPFrameVisualizer
     )
 
     window.addEventListener "resize", (event) ->
