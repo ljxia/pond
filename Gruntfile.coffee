@@ -48,8 +48,8 @@ module.exports = (grunt) ->
             filter: 'isFile'
           }
           {
-            src: ["components/eventemitter2/lib/eventemitter2.js"]
-            dest: "build/javascripts/lib/eventemitter2.js"
+            src: ["components/requirejs/require.js"]
+            dest: "build/javascripts/lib/require.js"
           }
           {
             src: ["components/threejs/build/three.min.js"]
@@ -107,13 +107,23 @@ module.exports = (grunt) ->
         compress: true
 
     coffee:
+      glob_to_multiple:
+        options:
+          bare: true
+        expand: true
+        flatten: true
+        cwd: 'src/coffee/modules'
+        src: ['*.coffee']
+        dest: 'build/javascripts/modules'
+        ext: '.js'
       compile:
         options:
           bare: true
           join: true
         files:[
+          "build/javascripts/playground.js":  "src/coffee/playground.coffee"
           "build/javascripts/app.js":  "src/coffee/app.coffee"
-          "build/javascripts/modules.js": [ "src/coffee/modules/*.coffee" ]
+          # "build/javascripts/modules.js": [ "src/coffee/modules/*.coffee" ]
         ]
 
   # Creates the `server` task
