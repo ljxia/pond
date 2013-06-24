@@ -25,8 +25,6 @@ define [
         @camera.aspect = width / height
         @camera.updateProjectionMatrix()
 
-        console.log "camera updated aspect ratio"
-
       handleMouseMove: (e) ->
         e.preventDefault()
         @cameraTarget.x = ( e.clientX / window.innerWidth ) * 2 - 1

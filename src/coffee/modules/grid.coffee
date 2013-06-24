@@ -24,18 +24,19 @@ define [
 
         material =
           new THREE.ParticleBasicMaterial({
-            color: 0x666666
+            color: 0xffffff
             size: 80
-            opacity: 1.0
+            opacity: 0.6
             map: texture
             blending: THREE.AdditiveBlending
             transparent: true
+            depthWrite: true
           });
 
 
         # fill a cube of 2000px long on each side
         length = 10
-        distance = 800
+        distance = 600
 
         geometry = new THREE.Geometry()
         geometry.dynamic = false
@@ -46,6 +47,7 @@ define [
               geometry.vertices.push(new THREE.Vector3(x * distance, y * distance, z * distance))
 
         grid = new THREE.ParticleSystem(geometry, material)
+        grid.sortParticles = true
         @scene.add grid
 
       update: ->

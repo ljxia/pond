@@ -13,11 +13,15 @@ require.config
 
 define [
     "playground"
+    "modules/grid"
   ], (
-    LeapPlayground
+    LeapPlayground,
+    LPGrid
   ) ->
     #
-    playground = new LeapPlayground()
+    playground = new LeapPlayground(
+      "grid": LPGrid
+    )
 
     window.addEventListener "resize", (event) ->
       playground.handleWindowResize event

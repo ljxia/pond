@@ -11,7 +11,7 @@ define [
   ) ->
 
     class LeapPlayground extends EventEmitter
-      constructor: ->
+      constructor: (layers) ->
         @name = "LeapMotion Playground"
         @canvas = document.getElementById("canvas")
         @renderer = new THREE.WebGLRenderer()
@@ -29,13 +29,9 @@ define [
         light.position.set(-1, -8, -1).normalize()
         @scene.add light
 
-
-        @layers =
-          "grid": new LPGrid(@scene, @renderer)
-
-        ######
-
-
+        @layers = {}
+        for name, layerFunc of layers
+          @layers[name] = new layerFunc(@scene, @renderer)
 
       play: ->
         @update()
